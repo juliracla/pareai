@@ -54,7 +54,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden dark:bg-[radial-gradient(circle_at_top_right,rgba(14,217,14,0.15),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(17,24,33,1),rgba(15,23,42,1))]">
+    <section className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(14,217,14,0.15),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(17,24,33,1),rgba(15,23,42,1))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-8 z-10 text-left">
@@ -66,11 +66,11 @@ export default function Hero() {
                 </span>
                 MUY PRONTO LANZAMIENTO
               </span>
-              <h1 className="text-4xl lg:text-6xl font-black leading-[1.1] tracking-tight text-slate-900 dark:text-slate-100 mb-6 uppercase italic">
+              <h1 className="text-4xl lg:text-6xl font-black leading-[1.1] tracking-tight text-white mb-6 uppercase italic">
                 ¡Que no te falte <span className="text-[#0ed90e]">plata</span> en la caja!
               </h1>
-              <p className="text-lg lg:text-xl text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
-                Controla tu presupuesto en tiempo real mientras mercas. Gracias a nuestra <span className="text-slate-900 dark:text-white font-bold">Tecnología de Visión IA</span>, escanea precios al instante y evita sorpresas al pagar.
+              <p className="text-lg lg:text-xl text-slate-400 max-w-xl leading-relaxed">
+                Controla tu presupuesto en tiempo real mientras mercas. Gracias a nuestra <span className="text-white font-bold">Tecnología de Visión IA</span>, escanea precios al instante y evita sorpresas al pagar.
               </p>
             </div>
             
@@ -79,7 +79,7 @@ export default function Hero() {
                 <div className="flex-grow max-w-md relative">
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
                   <input 
-                    className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:border-[#0ed90e] focus:ring-0 transition-all outline-none" 
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-slate-800 bg-slate-900 text-white focus:border-[#0ed90e] focus:ring-0 transition-all outline-none" 
                     placeholder="Tu correo electrónico" 
                     type="email"
                     value={email}
@@ -108,7 +108,6 @@ export default function Hero() {
                 </button>
               </div>
               {status === "error" && <p className="text-red-500 text-sm font-bold">{message}</p>}
-              {status === "success" && <p className="text-[#0ed90e] text-sm font-bold">{message}</p>}
             </form>
 
             <div className="flex items-center gap-4 text-sm text-slate-500">

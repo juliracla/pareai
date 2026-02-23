@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#f6f7f8]/80 dark:bg-[#111821]/80 backdrop-blur-md border-b border-[#0ed90e]/10 font-sans">
+    <header className="sticky top-0 z-50 w-full bg-[#111821]/80 backdrop-blur-md border-b border-[#0ed90e]/10 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-2">
           <div className="flex items-center">
@@ -18,9 +18,9 @@ export default function Header() {
             />
           </div>
           <nav className="hidden md:flex items-center gap-8">
-            <Link className="text-sm font-semibold text-slate-900 dark:text-white hover:text-[#0ed90e] dark:hover:text-[#0ed90e] transition-colors" href="#features">Características</Link>
-            <Link className="text-sm font-semibold text-slate-900 dark:text-white hover:text-[#0ed90e] dark:hover:text-[#0ed90e] transition-colors" href="#pricing">Precios</Link>
-            <Link className="text-sm font-semibold text-slate-900 dark:text-white hover:text-[#0ed90e] dark:hover:text-[#0ed90e] transition-colors" href="#security">Seguridad</Link>
+            <Link className="text-sm font-semibold text-white hover:text-[#0ed90e] transition-colors" href="#features">Características</Link>
+            <Link className="text-sm font-semibold text-white hover:text-[#0ed90e] transition-colors" href="#pricing">Precios</Link>
+            <Link className="text-sm font-semibold text-white hover:text-[#0ed90e] transition-colors" href="#security">Seguridad</Link>
           </nav>
           <div className="flex items-center gap-4">
             <a 

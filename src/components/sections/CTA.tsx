@@ -1,4 +1,56 @@
+"use client";
+import { useState } from "react";
+import { Loader2, CheckCircle2 } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import SuccessModal from "@/components/ui/SuccessModal";
+
 export default function CTA() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleJoin = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!email || !email.includes("@")) {
+      setStatus("error");
+      setMessage("Por favor ingresa un correo válido");
+      return;
+    }
+
+    setStatus("loading");
+    try {
+      // 1. Verificar si el correo ya existe
+      const { data: existingUser, error: checkError } = await supabase
+        .from('waitlist')
+        .select('email')
+        .eq('email', email)
+        .single();
+
+      if (existingUser) {
+        setStatus("success");
+        setIsModalOpen(true);
+        setEmail("");
+        return;
+      }
+
+      // 2. Si no existe, insertar
+      const { error: insertError } = await supabase
+        .from('waitlist')
+        .insert([{ email }]);
+
+      if (insertError) throw insertError;
+
+      setStatus("success");
+      setIsModalOpen(true);
+      setEmail("");
+    } catch (err: any) {
+      console.error(err);
+      setStatus("error");
+      setMessage(err.message || "Error al unirse");
+    }
+  };
+
   return (
     <section className="py-24 font-sans" id="cta">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -11,20 +63,50 @@ export default function CTA() {
             <p className="text-xl text-[#111821]/80 max-w-2xl mb-12 font-bold tracking-tight">
               ¡Sé de los primeros en probar la revolución del ahorro! Únete a nuestra lista de espera exclusiva hoy y asegura créditos GRATIS para tus primeras compras.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
-              <input 
-                className="flex-grow py-4 px-6 rounded-2xl border-none focus:ring-2 focus:ring-[#111821] bg-white shadow-xl outline-none text-slate-900 font-semibold" 
-                placeholder="Ingresa tu correo" 
-                type="email"
-              />
-              <button className="bg-[#111821] text-[#0ed90e] font-black py-4 px-8 rounded-2xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest active:scale-95 whitespace-nowrap">
-                QUIERO MIS CRÉDITOS GRATIS
-              </button>
-            </div>
+            
+            <form onSubmit={handleJoin} className="flex flex-col gap-4 w-full max-w-lg items-center">
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <input 
+                  className="flex-grow py-4 px-6 rounded-2xl border-none focus:ring-2 focus:ring-[#111821] bg-white shadow-xl outline-none text-slate-900 font-semibold" 
+                  placeholder="Ingresa tu correo" 
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === "loading" || status === "success"}
+                />
+                <button 
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className="bg-[#111821] text-[#0ed90e] font-black py-4 px-6 sm:px-8 rounded-2xl hover:scale-105 transition-all shadow-xl uppercase tracking-widest active:scale-95 whitespace-nowrap text-sm sm:text-base flex items-center justify-center gap-2 disabled:opacity-80"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      ENVIANDO...
+                    </>
+                  ) : status === "success" ? (
+                    <>
+                      <CheckCircle2 className="w-5 h-5" />
+                      UNIDO
+                    </>
+                  ) : (
+                    "QUIERO MIS CRÉDITOS GRATIS"
+                  )}
+                </button>
+              </div>
+              {status === "error" && <p className="text-red-700 text-sm font-bold bg-white/20 px-4 py-1 rounded-full">{message}</p>}
+              {status === "success" && <p className="text-[#111821] text-sm font-bold bg-white/40 px-4 py-1 rounded-full">{message}</p>}
+            </form>
+
             <p className="mt-8 text-[10px] font-black text-[#111821]/60 uppercase tracking-[0.3em]">Sin compromisos • Lanzamiento 2026</p>
           </div>
         </div>
       </div>
+      <SuccessModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        message="¡Registro exitoso! Te avisaremos muy pronto cuando la app esté lista."
+      />
     </section>
   );
 }

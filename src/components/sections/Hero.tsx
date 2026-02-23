@@ -1,8 +1,58 @@
-import { Mail } from "lucide-react";
+"use client";
+import { useState } from "react";
+import { Mail, CheckCircle2, Loader2 } from "lucide-react";
 import NextImage from "next/image";
 import mainImage from "../../assets/main.png";
+import { supabase } from "@/lib/supabase";
+import SuccessModal from "@/components/ui/SuccessModal";
 
 export default function Hero() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleJoin = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!email || !email.includes("@")) {
+      setStatus("error");
+      setMessage("Por favor ingresa un correo válido");
+      return;
+    }
+
+    setStatus("loading");
+    try {
+      // 1. Verificar si el correo ya existe
+      const { data: existingUser, error: checkError } = await supabase
+        .from('waitlist')
+        .select('email')
+        .eq('email', email)
+        .single();
+
+      if (existingUser) {
+        setStatus("success");
+        setIsModalOpen(true);
+        setEmail("");
+        return;
+      }
+
+      // 2. Si no existe, insertar
+      const { error: insertError } = await supabase
+        .from('waitlist')
+        .insert([{ email }]);
+
+      if (insertError) throw insertError;
+
+      setStatus("success");
+      setIsModalOpen(true);
+      setEmail("");
+    } catch (err: any) {
+      console.error(err);
+      setStatus("error");
+      setMessage(err.message || "Error al unirse");
+    }
+  };
+
   return (
     <section className="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden dark:bg-[radial-gradient(circle_at_top_right,rgba(14,217,14,0.15),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(17,24,33,1),rgba(15,23,42,1))]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,22 +73,44 @@ export default function Hero() {
                 Controla tu presupuesto en tiempo real mientras mercas. Gracias a nuestra <span className="text-slate-900 dark:text-white font-bold">Tecnología de Visión IA</span>, escanea precios al instante y evita sorpresas al pagar.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <div className="flex-grow max-w-md relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                <input 
-                  className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:border-[#0ed90e] focus:ring-0 transition-all outline-none" 
-                  placeholder="Tu correo electrónico" 
-                  type="email"
-                />
+            
+            <form onSubmit={handleJoin} className="flex flex-col gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="flex-grow max-w-md relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+                  <input 
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:border-[#0ed90e] focus:ring-0 transition-all outline-none" 
+                    placeholder="Tu correo electrónico" 
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status === "loading" || status === "success"}
+                  />
+                </div>
+                <button 
+                  type="submit"
+                  disabled={status === "loading" || status === "success"}
+                  className="bg-[#0ed90e] text-[#111821] text-center font-bold px-6 sm:px-8 py-4 rounded-xl hover:scale-105 transition-transform shadow-xl shadow-[#0ed90e]/20 whitespace-nowrap block sm:inline-block text-sm sm:text-base disabled:opacity-70 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      UNIRSE...
+                    </>
+                  ) : status === "success" ? (
+                    <>
+                      <CheckCircle2 className="w-5 h-5" />
+                      ¡LISTO!
+                    </>
+                  ) : (
+                    "QUIERO MIS CRÉDITOS GRATIS"
+                  )}
+                </button>
               </div>
-              <a 
-                href="#cta"
-                className="bg-[#0ed90e] text-[#111821] text-center font-bold px-8 py-4 rounded-xl hover:scale-105 transition-transform shadow-xl shadow-[#0ed90e]/20 whitespace-nowrap block sm:inline-block"
-              >
-                Unirse a la lista de espera
-              </a>
-            </div>
+              {status === "error" && <p className="text-red-500 text-sm font-bold">{message}</p>}
+              {status === "success" && <p className="text-[#0ed90e] text-sm font-bold">{message}</p>}
+            </form>
+
             <div className="flex items-center gap-4 text-sm text-slate-500">
               <div className="flex -space-x-2">
                 {[1, 2, 3].map((i) => (
@@ -74,6 +146,11 @@ export default function Hero() {
           </div>
         </div>
       </div>
+      <SuccessModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        message="¡Registro exitoso! Te avisaremos muy pronto cuando la app esté lista."
+      />
     </section>
   );
 }

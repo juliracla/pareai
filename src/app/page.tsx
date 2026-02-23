@@ -30,7 +30,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#f6f7f8] dark:bg-[#111821] text-slate-900 dark:text-slate-100">
+    <main className="min-h-screen bg-[#111821] text-slate-100">
       <Header />
       <div className="reveal"><Hero /></div>
       <div className="reveal"><Features /></div>

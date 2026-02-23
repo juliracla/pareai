@@ -1,8 +1,17 @@
+"use client";
+
 import NextImage from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import logo from "../../assets/logo.png";
+import PDFModal from "../ui/PDFModal";
+import ContactModal from "../ui/ContactModal";
 
 export default function Footer() {
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
     <footer className="bg-slate-900 py-16 border-t border-slate-800 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,10 +42,31 @@ export default function Footer() {
           <div>
             <h4 className="font-black mb-6 text-white uppercase italic tracking-wider">Legal</h4>
             <ul className="space-y-4 text-sm font-bold text-slate-400">
-              <li><Link className="hover:text-[#0ed90e] transition-colors" href="#">Privacidad</Link></li>
-              <li><Link className="hover:text-[#0ed90e] transition-colors" href="#">Términos</Link></li>
-              <li><Link className="hover:text-[#0ed90e] transition-colors" href="#">Cookies</Link></li>
-              <li><Link className="hover:text-[#0ed90e] transition-colors" href="#">Contacto</Link></li>
+              <li>
+                <button 
+                  onClick={() => setIsPrivacyOpen(true)}
+                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-left"
+                >
+                  Privacidad
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => setIsTermsOpen(true)}
+                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-left"
+                >
+                  Términos
+                </button>
+              </li>
+            
+              <li>
+       {/*          <button 
+                  onClick={() => setIsContactOpen(true)}
+                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-left"
+                >
+                  Contacto
+                </button> */}
+              </li>
             </ul>
           </div>
         </div>
@@ -49,6 +79,28 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      <PDFModal 
+        isOpen={isPrivacyOpen} 
+        onClose={() => setIsPrivacyOpen(false)} 
+        title="Política de Privacidad" 
+        pdfUrl="/privacidad.pdf"
+      />
+
+      <PDFModal 
+        isOpen={isTermsOpen} 
+        onClose={() => setIsTermsOpen(false)} 
+        title="Términos y Condiciones" 
+        pdfUrl="/terminos.pdf"
+      />
+
+      <ContactModal 
+        isOpen={isContactOpen} 
+        onClose={() => setIsContactOpen(false)} 
+      />
     </footer>
   );
 }
+
+
+

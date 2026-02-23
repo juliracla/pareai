@@ -125,7 +125,7 @@ export default function Hero() {
                   <div key={i} className="w-8 h-8 rounded-full border-2 border-[#f6f7f8] bg-slate-200 bg-cover bg-center" style={{ backgroundImage: `url('https://i.pravatar.cc/100?img=${i+10}')` }}></div>
                 ))}
               </div>
-              <span>Más de 500 personas ya se unieron</span>
+              <span>Más de 50 personas ya se unieron</span>
             </div>
           </div>
           

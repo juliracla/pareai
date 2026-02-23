@@ -1,14 +1,22 @@
 import { createPortal } from "react-dom";
-import { CheckCircle2, X } from "lucide-react";
+import { CheckCircle2, X, AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface SuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
+  title?: string;
   message: string;
+  type?: "success" | "error";
 }
 
-export default function SuccessModal({ isOpen, onClose, message }: SuccessModalProps) {
+export default function SuccessModal({ 
+  isOpen, 
+  onClose, 
+  title = "¡BIENVENIDO!", 
+  message,
+  type = "success"
+}: SuccessModalProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -24,6 +32,8 @@ export default function SuccessModal({ isOpen, onClose, message }: SuccessModalP
   }, [isOpen]);
 
   if (!isOpen || !mounted) return null;
+
+  const isError = type === "error";
 
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6">
@@ -43,12 +53,16 @@ export default function SuccessModal({ isOpen, onClose, message }: SuccessModalP
         </button>
 
         <div className="flex flex-col items-center text-center">
-          <div className="w-20 h-20 bg-[#0ed90e]/10 rounded-full flex items-center justify-center mb-6">
-            <CheckCircle2 className="w-10 h-10 text-[#0ed90e]" />
+          <div className={`w-20 h-20 ${isError ? 'bg-red-500/10' : 'bg-[#0ed90e]/10'} rounded-full flex items-center justify-center mb-6`}>
+            {isError ? (
+              <AlertCircle className="w-10 h-10 text-red-500" />
+            ) : (
+              <CheckCircle2 className="w-10 h-10 text-[#0ed90e]" />
+            )}
           </div>
           
           <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 uppercase italic tracking-tight">
-            ¡BIENVENIDO!
+            {title}
           </h3>
           
           <p className="text-slate-300 text-lg leading-relaxed mb-8">
@@ -57,9 +71,9 @@ export default function SuccessModal({ isOpen, onClose, message }: SuccessModalP
           
           <button 
             onClick={onClose}
-            className="w-full bg-[#0ed90e] text-[#111821] font-black py-4 rounded-2xl hover:scale-[1.02] transition-all shadow-xl shadow-[#0ed90e]/20 uppercase tracking-widest active:scale-[0.98]"
+            className={`w-full ${isError ? 'bg-red-500 shadow-red-500/20' : 'bg-[#0ed90e] shadow-[#0ed90e]/20'} text-[#111821] font-black py-4 rounded-2xl hover:scale-[1.02] transition-all shadow-xl uppercase tracking-widest active:scale-[0.98]`}
           >
-            Entendido
+            {isError ? 'Cerrar' : 'Entendido'}
           </button>
         </div>
       </div>

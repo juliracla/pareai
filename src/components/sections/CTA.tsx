@@ -9,6 +9,8 @@ export default function CTA() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTitle, setModalTitle] = useState("¡BIENVENIDO!");
+  const [modalType, setModalType] = useState<"success" | "error">("success");
 
   const handleJoin = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -20,21 +22,25 @@ export default function CTA() {
 
     setStatus("loading");
     try {
-      // 1. Verificar si el correo ya existe
-      const { data: existingUser, error: checkError } = await supabase
+      // 1. Consultar si el correo ya existe (GET/SELECT)
+      const { data: existingEntries, error: fetchError } = await supabase
         .from('waitlist')
         .select('email')
-        .eq('email', email)
-        .single();
+        .eq('email', email);
 
-      if (existingUser) {
-        setStatus("success");
+      if (fetchError) throw fetchError;
+
+      if (existingEntries && existingEntries.length > 0) {
+        setStatus("idle");
+        setModalTitle("YA ESTÁS REGISTRADO");
+        setModalType("error");
+        setMessage("Este correo ya está en nuestra lista. ¡Te avisaremos pronto!");
         setIsModalOpen(true);
         setEmail("");
         return;
       }
 
-      // 2. Si no existe, insertar
+      // 2. Si no existe, proceder con el registro (INSERT)
       const { error: insertError } = await supabase
         .from('waitlist')
         .insert([{ email }]);
@@ -42,6 +48,9 @@ export default function CTA() {
       if (insertError) throw insertError;
 
       setStatus("success");
+      setModalTitle("¡BIENVENIDO!");
+      setModalType("success");
+      setMessage("¡Registro exitoso! Te avisaremos muy pronto cuando la app esté lista.");
       setIsModalOpen(true);
       setEmail("");
     } catch (err: any) {
@@ -105,7 +114,9 @@ export default function CTA() {
       <SuccessModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
-        message="¡Registro exitoso! Te avisaremos muy pronto cuando la app esté lista."
+        title={modalTitle}
+        message={message}
+        type={modalType}
       />
     </section>
   );

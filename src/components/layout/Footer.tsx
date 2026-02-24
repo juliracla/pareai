@@ -73,8 +73,22 @@ export default function Footer() {
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">
           <p>© 2026 PareAi! - Hecho en Colombia 🇨🇴</p>
           <div className="flex gap-6">
-            <Link className="hover:text-[#0ed90e] transition-colors" href="#">Tiktok</Link>
-            <Link className="hover:text-[#0ed90e] transition-colors" href="#">Instagram</Link>
+            <Link 
+              className="hover:text-[#0ed90e] transition-colors" 
+              href="https://www.tiktok.com/@pareai.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Tiktok
+            </Link>
+            <Link 
+              className="hover:text-[#0ed90e] transition-colors" 
+              href="https://www.instagram.com/pareai.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </Link>
             <Link className="hover:text-[#0ed90e] transition-colors" href="#">Gmail</Link>
           </div>
         </div>

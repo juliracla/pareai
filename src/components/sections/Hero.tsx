@@ -76,7 +76,7 @@ export default function Hero() {
                 MUY PRONTO LANZAMIENTO
               </span>
               <h1 className="text-4xl lg:text-6xl font-black leading-[1.1] tracking-tight text-white mb-6 uppercase italic">
-                ¡Que no te falte <span className="text-[#0ed90e]">plata</span> en la caja!
+                Tu mercado <span className="text-[#0ed90e]">bajo control</span>
               </h1>
               <p className="text-lg lg:text-xl text-slate-400 max-w-xl leading-relaxed">
                 Controla tu presupuesto en tiempo real mientras mercas. Gracias a nuestra <span className="text-white font-bold">Tecnología de Visión IA</span>, escanea precios al instante y evita sorpresas al pagar.

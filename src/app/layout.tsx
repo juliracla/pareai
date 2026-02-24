@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Pare Ahí! - No más vergüenza en la caja",
+  title: "Pare Ahí! - Tu mercado bajo control",
   description: "La calculadora inteligente que te ayuda a mercar sin pasarte del presupuesto. Escanea precios, suma en tiempo real y toma el control de tus finanzas en el supermercado.",
   keywords: ["Pare Ahí", "mercado", "supermercado", "ahorro", "presupuesto", "calculadora", "Colombia", "finanzas personales"],
   themeColor: "#111821",

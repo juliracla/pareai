@@ -83,50 +83,8 @@ export default function Hero() {
               </p>
             </div>
             
-            <form onSubmit={handleJoin} className="flex flex-col gap-3">
-              <div className="flex flex-col sm:flex-row gap-3">
-                <div className="flex-grow max-w-md relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-                  <input 
-                    className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-slate-800 bg-slate-900 text-white focus:border-[#0ed90e] focus:ring-0 transition-all outline-none" 
-                    placeholder="Tu correo electrónico" 
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled={status === "loading" || status === "success"}
-                  />
-                </div>
-                <button 
-                  type="submit"
-                  disabled={status === "loading" || status === "success"}
-                  className="bg-[#0ed90e] text-[#111821] text-center font-bold px-6 sm:px-8 py-4 rounded-xl hover:scale-105 transition-transform shadow-xl shadow-[#0ed90e]/20 whitespace-nowrap block sm:inline-block text-sm sm:text-base disabled:opacity-70 disabled:hover:scale-100 flex items-center justify-center gap-2"
-                >
-                  {status === "loading" ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      UNIRSE...
-                    </>
-                  ) : status === "success" ? (
-                    <>
-                      <CheckCircle2 className="w-5 h-5" />
-                      ¡LISTO!
-                    </>
-                  ) : (
-                    "QUIERO MIS CRÉDITOS GRATIS"
-                  )}
-                </button>
-              </div>
-              {status === "error" && <p className="text-red-500 text-sm font-bold">{message}</p>}
-            </form>
+       
 
-            <div className="flex items-center gap-4 text-sm text-slate-500">
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-[#f6f7f8] bg-slate-200 bg-cover bg-center" style={{ backgroundImage: `url('https://i.pravatar.cc/100?img=${i+10}')` }}></div>
-                ))}
-              </div>
-              <span>Más de 50 personas ya se unieron</span>
-            </div>
           </div>
           
           <div className="relative flex justify-center lg:justify-end animate-float">

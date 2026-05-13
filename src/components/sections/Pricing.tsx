@@ -1,46 +1,30 @@
 "use client";
-import { CheckCircle2, Stars, Zap, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Stars, Zap } from "lucide-react";
 
 export default function Pricing() {
   const plans = [
     {
       name: "PACK BÁSICO",
       price: "$5.000",
-      description: "Ideal para compras ocasionales",
+      description: "Ideal para tus primeras compras",
       icon: <Zap className="w-6 h-6 text-[#0ed90e]" />,
-    
-      features: [
-        { name: "50 créditos de escaneo con IA", available: true },
-        { name: "Alertas de presupuesto real", available: true },
-        { name: "Historial de compras local", available: true }
-      ],
-      popular: false
-    },
-    {
-      name: "PACK AHORRO",
-      price: "$9.900",
-      description: "El más popular para familias",
-      icon: <Stars className="w-6 h-6 text-[#0ed90e]" />,
-     
       features: [
         { name: "150 créditos de escaneo con IA", available: true },
-        { name: "Comparación de precios IA", available: true },
-        { name: "Listas de mercado compartidas", available: true },
-        { name: "Alertas de ofertas detectadas", available: true }
+        { name: "Alertas de presupuesto real", available: true },
+        { name: "Historial de compras local", available: true }
       ],
       popular: true
     },
     {
-      name: "PACK PRO",
-      price: "$19.900",
-      description: "Ahorro máximo sin límites",
-      icon: <ShieldCheck className="w-6 h-6 text-[#0ed90e]" />,
-     
+      name: "PACK AHORRO",
+      price: "$20.000",
+      description: "El más popular para familias",
+      icon: <Stars className="w-6 h-6 text-[#0ed90e]" />,
       features: [
         { name: "500 créditos de escaneo con IA", available: true },
-        { name: "Soporte prioritario 24/7", available: true },
-        { name: "Análisis mensual de gastos", available: true },
-        { name: "Exportación a Excel/PDF", available: true }
+        { name: "Comparación de precios IA", available: true },
+        { name: "Listas de mercado compartidas", available: true },
+        { name: "Soporte prioritario 24/7", available: true }
       ],
       popular: false
     }
@@ -58,7 +42,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-stretch pt-10">
+        <div className="grid md:grid-cols-2 gap-8 items-stretch pt-10 max-w-4xl mx-auto">
           {plans.map((plan, idx) => (
             <div 
               key={idx} 
@@ -90,7 +74,7 @@ export default function Pricing() {
 
 
 
-              <ul className="space-y-4 mb-10 flex-grow">
+              <ul className="space-y-4 flex-grow">
                  {plan.features.map((feature, fIdx) => (
                   <li key={fIdx} className="flex items-center gap-3 text-sm font-bold text-slate-300">
                     <CheckCircle2 className="text-[#0ed90e] w-5 h-5 shrink-0" />
@@ -98,18 +82,6 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-
-              <a 
-                href="#cta"
-                className={`w-full py-5 rounded-2xl font-black transition-all duration-300 text-center uppercase tracking-widest text-sm flex items-center justify-center gap-2
-                  ${plan.popular 
-                    ? 'bg-[#0ed90e] text-[#111821] shadow-xl shadow-[#0ed90e]/20 hover:scale-[1.02] active:scale-[0.98]' 
-                    : 'bg-white/10 text-white hover:bg-white/20'
-                  }`}
-              >
-                Reservar mi cupo
-                <Zap className="w-4 h-4 fill-current" />
-              </a>
             </div>
           ))}
         </div>

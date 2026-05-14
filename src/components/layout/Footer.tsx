@@ -13,7 +13,10 @@ export default function Footer() {
   const [isContactOpen, setIsContactOpen] = useState(false);
 
   return (
-    <footer className="bg-slate-900 py-16 border-t border-slate-800 font-sans">
+    <footer className="bg-[#111821] py-16 border-t border-[#334155] font-sans relative">
+      {/* Top accent line */}
+      <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-[#0ed90e]/25 to-transparent" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-12 mb-12 text-left">
           <div className="col-span-2">
@@ -34,9 +37,8 @@ export default function Footer() {
             <h4 className="font-black mb-6 text-white uppercase italic tracking-wider">Producto</h4>
             <ul className="space-y-4 text-sm font-bold text-slate-400">
               <li><Link className="hover:text-[#0ed90e] transition-colors" href="#features">Características</Link></li>
-              <li><Link className="hover:text-[#0ed90e] transition-colors" href="#pricing">Precios</Link></li>
+              <li><Link className="hover:text-[#0ed90e] transition-colors" href="#cta">Descargar</Link></li>
               <li><Link className="hover:text-[#0ed90e] transition-colors" href="#">Tecnología de Visión IA</Link></li>
-
             </ul>
           </div>
           <div>
@@ -70,7 +72,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+        <div className="pt-8 border-t border-[#334155] flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">
           <p>© 2026 PareAi! - Hecho en Colombia 🇨🇴</p>
           <div className="flex gap-6">
             <Link 

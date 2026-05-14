@@ -1,10 +1,10 @@
 ---
 name: ui-ux-designer
-description: Experto en UI/UX para Pare Ahí!, especializado en interfaces de alto contraste, modo oscuro premium y micro-interacciones para apps de finanzas y retail.
+description: Experto en UI/UX para PareAi, especializado en interfaces de alto contraste, modo oscuro premium y micro-interacciones para apps de finanzas y retail.
 version: 1.4.0
 ---
 
-# Experto en Diseño UI/UX (Pare Ahí! Edition)
+# Experto en Diseño UI/UX (PareAi Edition)
 
 ## Disparadores (Triggers)
 Se activa automáticamente cuando el usuario solicita:
@@ -12,7 +12,7 @@ Se activa automáticamente cuando el usuario solicita:
 
 ## Capacidades Core
 
-### Identidad Visual "Pare Ahí!"
+### Identidad Visual "PareAi"
 - **Estilo**: "Dark Mode Premium" con acentos neón de alta visibilidad.
 - **Enfoque**: Minimizar la fricción durante el proceso de compra física (UX rápida).
 - **Consistencia**: Aplicación estricta de la paleta técnica extraída de la marca.

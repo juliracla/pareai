@@ -19,7 +19,7 @@ export default function Hero() {
               <div className="w-5 h-5 rounded-full border-2 border-[#0ed90e] flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-[#0ed90e]" />
               </div>
-              <span className="text-[10px] font-black text-[#0ed90e] uppercase tracking-[0.3em]">Pare Ahí!</span>
+              <span className="text-[10px] font-black text-[#0ed90e] uppercase tracking-[0.3em]">PareAi</span>
             </div>
 
             {/* Main heading — Live N Move style: large, line-broken, bold */}
@@ -54,24 +54,26 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Social proof */}
-            <div className="flex items-center gap-4 pt-4 border-t border-white/8">
-              <div className="flex -space-x-3">
-                {[1,2,3,4].map(i => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-[#111821] overflow-hidden">
-                    <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="" className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-              <div>
-                <div className="flex items-center gap-1 mb-0.5">
-                  {[1,2,3,4,5].map(i => (
-                    <svg key={i} viewBox="0 0 20 20" className="w-3 h-3 fill-[#0ed90e]">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest">+5,000 usuarios ahorrando</p>
+            {/* Social media links */}
+            <div className="flex items-center gap-6 pt-6 border-t border-white/8">
+              <span className="text-[10px] text-slate-500 font-black uppercase tracking-widest">Siguenos en:</span>
+              <div className="flex items-center gap-4">
+                <a 
+                  href="https://www.instagram.com/pareai.app?igsh=MXc5NHFpN2hiNnl2dw==" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-[#0ed90e] transition-all hover:scale-110 active:scale-95"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a 
+                  href="https://www.tiktok.com/@pareai.app?_r=1&_t=ZS-96LBZPN7rK4" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-[#0ed90e] transition-all hover:scale-110 active:scale-95"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.31-.75.42-1.24 1.25-1.33 2.1-.05.7.08 1.42.39 2.06.32.74.89 1.34 1.57 1.71.71.34 1.5.44 2.27.4 1.02-.01 1.98-.49 2.62-1.26.54-.61.81-1.41.83-2.21V.02z"/></svg>
+                </a>
               </div>
             </div>
           </div>

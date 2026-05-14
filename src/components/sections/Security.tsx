@@ -47,7 +47,7 @@ export default function Security() {
               Tu seguridad es nuestra prioridad número uno
             </h2>
             <p className="text-lg text-slate-400 leading-relaxed font-semibold">
-              Entendemos que la privacidad de tus finanzas es fundamental. Por eso, Pare Ahí! está diseñado con estándares bancarios de seguridad y un compromiso inquebrantable con la protección de tus datos.
+              Entendemos que la privacidad de tus finanzas es fundamental. Por eso, PareAi está diseñado con estándares bancarios de seguridad y un compromiso inquebrantable con la protección de tus datos.
             </p>
             <div className="flex flex-col gap-4">
               {/* Sección Anónimo removida */}

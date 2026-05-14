@@ -67,7 +67,7 @@ export default function CTA() {
             <span className="text-[#0ed90e]" style={{textShadow: '0 0 30px rgba(14,217,14,0.35)'}}>ahora mismo.</span>
           </h3>
           <p className="text-slate-400 max-w-md text-base font-light leading-relaxed">
-            Descarga Pare Ahí! y transforma tu manera de mercar. La IA que cuida tu bolsillo está a un clic.
+            Descarga PareAi y transforma tu manera de mercar. La IA que cuida tu bolsillo está a un clic.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-center">

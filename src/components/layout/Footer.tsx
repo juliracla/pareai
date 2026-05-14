@@ -77,7 +77,7 @@ export default function Footer() {
           <div className="flex gap-6">
             <Link 
               className="hover:text-[#0ed90e] transition-colors" 
-              href="https://www.tiktok.com/@pareai.app"
+              href="https://www.tiktok.com/@pareai.app?_r=1&_t=ZS-96LBZPN7rK4"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -85,7 +85,7 @@ export default function Footer() {
             </Link>
             <Link 
               className="hover:text-[#0ed90e] transition-colors" 
-              href="https://www.instagram.com/pareai.app/"
+              href="https://www.instagram.com/pareai.app?igsh=MXc5NHFpN2hiNnl2dw=="
               target="_blank"
               rel="noopener noreferrer"
             >

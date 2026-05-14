@@ -91,7 +91,7 @@ export default function Footer() {
             >
               Instagram
             </Link>
-            <Link className="hover:text-[#0ed90e] transition-colors" href="#">Gmail</Link>
+            <Link className="hover:text-[#0ed90e] transition-colors" href="mailto:soporte.pareai@gmail.com">Gmail</Link>
           </div>
         </div>
       </div>

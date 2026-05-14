@@ -18,36 +18,36 @@ export default function Footer() {
       <div className="absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-[#0ed90e]/25 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-12 mb-12 text-left">
-          <div className="col-span-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 lg:gap-12 mb-12 text-center sm:text-left">
+          <div className="sm:col-span-2 flex flex-col items-center sm:items-start">
             <div className="flex items-center gap-2 mb-6">
               <NextImage 
                 src={logo} 
                 alt="Pare Ahí Logo" 
-                width={120} 
-                height={40} 
-                className="h-10 w-auto object-contain"
+                width={140} 
+                height={45} 
+                className="h-12 lg:h-14 w-auto object-contain"
               />
             </div>
-            <p className="text-slate-400 max-w-sm leading-relaxed font-semibold">
+            <p className="text-slate-400 max-w-sm leading-relaxed font-semibold text-sm lg:text-base">
               La primera aplicación colombiana enfocada en el ahorro real durante las compras de supermercado mediante inteligencia artificial.
             </p>
           </div>
           <div>
-            <h4 className="font-black mb-6 text-white uppercase italic tracking-wider">Producto</h4>
-            <ul className="space-y-4 text-sm font-bold text-slate-400">
+            <h4 className="font-black mb-4 lg:mb-6 text-white uppercase italic tracking-wider text-xs lg:text-sm">Producto</h4>
+            <ul className="space-y-3 lg:space-y-4 text-xs lg:text-sm font-bold text-slate-400">
               <li><Link className="hover:text-[#0ed90e] transition-colors" href="#features">Características</Link></li>
               <li><Link className="hover:text-[#0ed90e] transition-colors" href="#cta">Descargar</Link></li>
               <li><Link className="hover:text-[#0ed90e] transition-colors" href="#">Tecnología de Visión IA</Link></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-black mb-6 text-white uppercase italic tracking-wider">Legal</h4>
-            <ul className="space-y-4 text-sm font-bold text-slate-400">
+            <h4 className="font-black mb-4 lg:mb-6 text-white uppercase italic tracking-wider text-xs lg:text-sm">Legal</h4>
+            <ul className="space-y-3 lg:space-y-4 text-xs lg:text-sm font-bold text-slate-400">
               <li>
                 <button 
                   onClick={() => setIsPrivacyOpen(true)}
-                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-center sm:text-left w-full"
                 >
                   Privacidad
                 </button>
@@ -55,19 +55,10 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => setIsTermsOpen(true)}
-                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-left"
+                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-center sm:text-left w-full"
                 >
                   Términos
                 </button>
-              </li>
-            
-              <li>
-       {/*          <button 
-                  onClick={() => setIsContactOpen(true)}
-                  className="hover:text-[#0ed90e] transition-colors cursor-pointer text-left"
-                >
-                  Contacto
-                </button> */}
               </li>
             </ul>
           </div>
